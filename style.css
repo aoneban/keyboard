@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#input {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+  margin: 0px auto;
+  padding: 50px 0;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: burlywood;
+}
+
+.keyboard__wrapper {
+  max-width: 55%;
+  height: auto;
+  background-color: bisque;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.keyboard__row {
+  max-width: 100%;
+  height: auto;
+}
+
+.keyboard__key {
+  display: flex;
+  order: 2;
+  display: block;
+  background-color: aquamarine;
+  min-height: 40px;
+  width: 50px;
+  height: 50px;
+  margin: 4px;
+  border-radius: 5px;
+  transition: 0.3s ease;
+  padding: 15px 0 0 20px;
+  cursor: pointer;
+}
+
+.Backspace {
+  width: 120px;
+}
+
+.ShiftLeft,
+.CapsLock {
+  width: 115px;
+}
+
+.ShiftRight,
+.Enter {
+  width: 112px;
+}
+
+.Tab {
+  width: 60px;
+}
+
+.Delete > .rus,
+.Delete > .eng {
+  position: relative;
+  right: 7px;
+}
+
+.Enter > .rus,
+.Enter > .eng,
+.ShiftRight > .rus,
+.ShiftRight > .eng,
+.ShiftLeft > .eng,
+.ShiftLeft > .rus {
+  position: relative;
+  left: 20px;
+}
+
+.MetaLeft > .rus,
+.MetaLeft > .eng,
+.ControlLeft > .rus,
+.ControlLeft > .eng,
+.ControlRight > .rus,
+.ControlRight > .eng {
+  position: relative;
+  right: 10px;
+}
+
+.AltLeft > .rus,
+.AltLeft > .eng,
+.AltRight > .rus,
+.AltRight > .eng {
+  position: relative;
+  right: 5px;
+}
+
+.ArrowUp > .rus,
+.ArrowUp > .eng,
+.ArrowLeft > .rus,
+.ArrowLeft > .eng,
+.ArrowRight > .rus,
+.ArrowRight > .eng,
+.ArrowDown > .rus,
+.ArrowDown > .eng {
+  position: relative;
+  right: 3px;
+}
+
+.Space {
+  width: 406px;
+}
+
+.eng {
+  display: block;
+}
+
+.rus {
+  display: none;
+}
+
+.keyboard__row {
+  display: flex;
+}
+
+.shiftcaps,
+.caps,
+.caseUp {
+  display: none;
+}
+
+.active {
+  background-color: orange;
+  border-radius: 50%;
+  border: none;
+  transition: 0.3s ease;
+}/*# sourceMappingURL=style.css.map */
