@@ -6,6 +6,8 @@
 
 #input {
   width: 100%;
+  font-size: 20px;
+  padding: 7px 0 0 10px;
 }
 
 .text-center {
@@ -34,6 +36,7 @@
 }
 
 .keyboard__key {
+  font-size: 18px;
   display: flex;
   order: 2;
   display: block;
@@ -139,4 +142,9 @@
   border-radius: 50%;
   border: none;
   transition: 0.3s ease;
+}
+
+.description {
+  text-align: center;
+  margin-top: 20px;
 }/*# sourceMappingURL=style.css.map */
