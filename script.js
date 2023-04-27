@@ -25,9 +25,12 @@ function init() {
       caseDown.forEach(function (el) {
         el.style.display = 'block';
       });
-    } else if (event.code !== 'CapsLock' && event.code !== 'Backspace') {
-      console.log(event.code);
-      console.log(event.key);
+    } else if (
+      event.code !== 'CapsLock' &&
+      event.code !== 'Backspace' &&
+      event.code !== 'AltLeft' &&
+      event.code !== 'ControlLeft'
+    ) {
       area.value += event.key;
       const prev = document.querySelector(`.${event.code}`);
       prev.classList.add('active');
@@ -36,14 +39,20 @@ function init() {
       }, 200);
     } else if (event.code === 'Backspace') {
       let values = document.getElementById('input').value;
-      let str
-      str = values.slice(0, str.length - 1);
+      let str;
+      str = values.slice(0, values.length - 1);
       area.value = str;
-      const backs = document.querySelector('.Backspace');
-      backs.classList.add('active');
+      document.querySelector('.Backspace').classList.add('active');
       setTimeout(() => {
-        backs.classList.remove('active');
+        document.querySelector('.Backspace').classList.remove('active');
       }, 200);
+    } else if (event.code == 'AltLeft') {
+      document
+        .querySelectorAll('.eng')
+        .forEach((el) => (el.style.display = 'none'));
+      document
+        .querySelectorAll('.rus')
+        .forEach((el) => (el.style.display = 'block'));
     }
   };
 }
@@ -81,10 +90,12 @@ initMouse();
 function initMouse() {
   const keys = document.querySelectorAll('.key');
   keys.forEach(function (el) {
+    const item = document.querySelector('.eng');
+    let computedStyle = getComputedStyle(item);
     if (!el.classList.contains('CapsLock')) {
       el.addEventListener('click', function () {
         this.classList.add('active');
-        area.value += this.firstElementChild.innerText;
+        area.value += this.innerText;
         setTimeout(() => {
           this.classList.remove('active');
         }, 200);

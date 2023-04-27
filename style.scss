@@ -30,25 +30,34 @@
   border-radius: 5px;
 }
 
+.hidden {
+  display: none;
+}
+
 .keyboard__row {
   max-width: 100%;
   height: auto;
 }
 
 .keyboard__key {
-  font-size: 18px;
-  display: flex;
-  order: 2;
-  display: block;
-  background-color: aquamarine;
-  min-height: 40px;
-  width: 50px;
-  height: 50px;
-  margin: 4px;
-  border-radius: 5px;
-  transition: 0.3s ease;
-  padding: 15px 0 0 20px;
-  cursor: pointer;
+  .eng {
+    .caseDown,
+    .caps {
+      font-size: 18px;
+      display: flex;
+      order: 2;
+      display: block;
+      background-color: aquamarine;
+      min-height: 40px;
+      width: 50px;
+      height: 50px;
+      margin: 4px;
+      border-radius: 5px;
+      transition: 0.3s ease;
+      padding: 15px 0 0 20px;
+      cursor: pointer;
+    }
+  }
 }
 
 .Backspace {
@@ -129,18 +138,8 @@
   display: block;
 }
 
-.rus {
-  display: none;
-}
-
 .keyboard__row {
   display: flex;
-}
-
-.shiftcaps,
-.caps,
-.caseUp {
-  display: none;
 }
 
 .active {
