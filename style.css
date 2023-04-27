@@ -69,6 +69,12 @@
   width: 60px;
 }
 
+.Tab > .rus,
+.Tab > .eng {
+  position: relative;
+  right: 5px;
+}
+
 .Delete > .rus,
 .Delete > .eng {
   position: relative;

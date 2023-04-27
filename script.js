@@ -3,14 +3,38 @@ const area = document.getElementById('input');
 init();
 function init() {
   document.onkeydown = function (event) {
-    console.log(event.code);
-    console.log(event.key);
-    area.value += event.key;
-    const prev = document.querySelector(`.${event.code}`);
-    prev.classList.add('active');
-    setTimeout(() => {
-      prev.classList.remove('active');
-    }, 200);
+    const capsLock = document.querySelector('.CapsLock');
+    const caseDown = document.querySelectorAll('.caseDown');
+    const caps = document.querySelectorAll('.caps');
+    if (event.code === 'CapsLock' && !capsLock.classList.contains('active')) {
+      capsLock.classList.add('active');
+      caseDown.forEach(function (el) {
+        el.style.display = 'none';
+      });
+      caps.forEach(function (el) {
+        el.style.display = 'block';
+      });
+    } else if (
+      event.code === 'CapsLock' &&
+      capsLock.classList.contains('active')
+    ) {
+      capsLock.classList.remove('active');
+      caps.forEach(function (el) {
+        el.style.display = 'none';
+      });
+      caseDown.forEach(function (el) {
+        el.style.display = 'block';
+      });
+    } else if (event.code !== 'CapsLock') {
+      console.log(event.code);
+      console.log(event.key);
+      area.value += event.key;
+      const prev = document.querySelector(`.${event.code}`);
+      prev.classList.add('active');
+      setTimeout(() => {
+        prev.classList.remove('active');
+      }, 200);
+    }
   };
 }
 
@@ -59,31 +83,13 @@ function initMouse() {
   });
 }
 
-initCapsLockEn();
-function initCapsLockEn() {
-  document.onkeydown = function (event) {
-    const capsLock = document.querySelector('.CapsLock');
-    const caseDown = document.querySelectorAll('.caseDown');
-    const caps = document.querySelectorAll('.caps');
-    if (event.code === 'CapsLock' && !capsLock.classList.contains('active')) {
-      capsLock.classList.add('active');
-      caseDown.forEach(function (el) {
-        el.style.display = 'none';
-      });
-      caps.forEach(function (el) {
-        el.style.display = 'block';
-      });
-    } else if (
-      event.code === 'CapsLock' &&
-      capsLock.classList.contains('active')
-    ) {
-      capsLock.classList.remove('active');
-      caps.forEach(function (el) {
-        el.style.display = 'none';
-      });
-      caseDown.forEach(function (el) {
-        el.style.display = 'block';
-      });
-    }
-  };
+backSpaceForMouse();
+function backSpaceForMouse() {
+  const back = document.querySelector('.Backspace');
+  back.addEventListener('click', () => {
+    let values = document.getElementById('input').value;
+    let str = values.replaceAll('Backspace', '');
+    str = str.slice(0, str.length - 1);
+    area.value = str;
+  });
 }
