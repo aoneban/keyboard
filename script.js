@@ -25,7 +25,7 @@ function init() {
       caseDown.forEach(function (el) {
         el.style.display = 'block';
       });
-    } else if (event.code !== 'CapsLock') {
+    } else if (event.code !== 'CapsLock' && event.code !== 'Backspace') {
       console.log(event.code);
       console.log(event.key);
       area.value += event.key;
@@ -33,6 +33,16 @@ function init() {
       prev.classList.add('active');
       setTimeout(() => {
         prev.classList.remove('active');
+      }, 200);
+    } else if (event.code === 'Backspace') {
+      let values = document.getElementById('input').value;
+      let str
+      str = values.slice(0, str.length - 1);
+      area.value = str;
+      const backs = document.querySelector('.Backspace');
+      backs.classList.add('active');
+      setTimeout(() => {
+        backs.classList.remove('active');
       }, 200);
     }
   };
