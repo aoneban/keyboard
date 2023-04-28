@@ -43,7 +43,9 @@ function init() {
       event.code !== 'AltLeft' &&
       event.code !== 'ControlLeft'
     ) {
-      area.value += event.key;
+      let strs
+      strs = event.key.slice(0, event.key.length - 1);
+      area.value += strs;
       const prev = document.querySelector(`.${event.code}`);
       prev.classList.add('active');
       setTimeout(() => {
