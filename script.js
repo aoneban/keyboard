@@ -124,12 +124,21 @@ function initMouse() {
           area.value += ' ';
           setTimeout(() => {
             this.classList.remove('active');
+            document.getElementById('input').focus();
+          }, 200);
+        } else if (this.classList.contains('Tab')) {
+          this.classList.add('active');
+          area.value += '    ';
+          setTimeout(() => {
+            this.classList.remove('active');
+            document.getElementById('input').focus();
           }, 200);
         } else {
           this.classList.add('active');
           area.value += this.innerText;
           setTimeout(() => {
             this.classList.remove('active');
+            document.getElementById('input').focus();
           }, 200);
         }
       });
