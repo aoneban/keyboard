@@ -43,7 +43,9 @@ function init() {
       event.code !== 'Backspace' &&
       event.code !== 'AltLeft' &&
       event.code !== 'ControlLeft' &&
-      event.code !== 'Space' 
+      event.code !== 'Space' &&
+      event.code !== 'Tab' &&
+      event.code !== 'Enter'
     ) {
       const setCaps = document.querySelector('.CapsLock')
       const setClass = document.querySelector('.eng')
@@ -116,6 +118,18 @@ function init() {
       setTimeout(() => {
         document.querySelector('.Space').classList.remove('active');
       }, 200);
+    } else if (event.code === 'Tab') {
+      document.querySelector('.Tab').classList.add('active');
+      area.value += '    ';
+      setTimeout(() => {
+        document.querySelector('.Tab').classList.remove('active');
+      }, 200);
+    } else if (event.code === 'Enter') {
+      document.querySelector('.Enter').classList.add('active');
+      area.value += '\n';
+      setTimeout(() => {
+        document.querySelector('.Enter').classList.remove('active');
+      }, 200);
     }
   };
 }
@@ -165,6 +179,13 @@ function initMouse() {
         } else if (this.classList.contains('Tab')) {
           this.classList.add('active');
           area.value += '    ';
+          setTimeout(() => {
+            this.classList.remove('active');
+            document.getElementById('input').focus();
+          }, 200);
+        } else if (this.classList.contains('Enter')) {
+          this.classList.add('active');
+          area.value += '\n';
           setTimeout(() => {
             this.classList.remove('active');
             document.getElementById('input').focus();
