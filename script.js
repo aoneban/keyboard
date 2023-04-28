@@ -12,6 +12,7 @@ const loop = () => {
 init();
 function init() {
   document.onkeydown = function (event) {
+    event.preventDefault()
     if(event.code in pressedKeys) return;
        pressedKeys[event.code] = true;
     const callLoop = loop()
@@ -41,19 +42,46 @@ function init() {
       event.code !== 'CapsLock' &&
       event.code !== 'Backspace' &&
       event.code !== 'AltLeft' &&
-      event.code !== 'ControlLeft'
+      event.code !== 'ControlLeft' &&
+      event.code !== 'Space' 
     ) {
-      let strs
-      strs = event.key.slice(0, event.key.length - 1);
-      area.value += strs;
-      const prev = document.querySelector(`.${event.code}`);
-      prev.classList.add('active');
-      setTimeout(() => {
-        prev.classList.remove('active');
-      }, 200);
+      const setCaps = document.querySelector('.CapsLock')
+      const setClass = document.querySelector('.eng')
+      let newComputedStyle = getComputedStyle(setClass)
+      if (!setCaps.classList.contains('active') && newComputedStyle.display == 'block') {
+        const prev = document.querySelector(`.${event.code} > .eng > .caseDown`).innerText
+        area.value += prev;
+        document.querySelector(`.${event.code}`).classList.add('active');
+        setTimeout(() => {
+        document.querySelector(`.${event.code}`).classList.remove('active');
+        }, 200);
+      } else if (!setCaps.classList.contains('active') && newComputedStyle.display == 'none') {
+        const prev2 = document.querySelector(`.${event.code} > .rus > .caseDown`)
+        area.value += prev2.innerText;
+        document.querySelector(`.${event.code}`).classList.add('active');
+        setTimeout(() => {
+        document.querySelector(`.${event.code}`).classList.remove('active');
+        }, 200);
+      }
+      else if (setCaps.classList.contains('active') && newComputedStyle.display == 'block') {
+        const prev3 = document.querySelector(`.${event.code} > .eng > .caseUp`)
+        area.value += prev3.innerText;
+        document.querySelector(`.${event.code}`).classList.add('active');
+        setTimeout(() => {
+        document.querySelector(`.${event.code}`).classList.remove('active');
+        }, 200);
+      }
+      else if (setCaps.classList.contains('active') && newComputedStyle.display == 'none') {
+        const prev4 = document.querySelector(`.${event.code} > .rus > .caseUp`)
+        area.value += prev4.innerText;
+        document.querySelector(`.${event.code}`).classList.add('active');
+        setTimeout(() => {
+        document.querySelector(`.${event.code}`).classList.remove('active');
+        }, 200);
+      }
     } else if (event.code === 'Backspace') {
       let values = document.getElementById('input').value;
-      let str;
+      let str
       str = values.slice(0, values.length - 1);
       area.value = str;
       document.querySelector('.Backspace').classList.add('active');
@@ -81,7 +109,13 @@ function init() {
           document.querySelector('.ControlLeft').classList.remove('active');
           document.querySelector('.AltLeft').classList.remove('active');
         }, 200);
-      }
+      } 
+    } else if (event.code === 'Space') {
+      document.querySelector('.Space').classList.add('active');
+      area.value += ' ';
+      setTimeout(() => {
+        document.querySelector('.Space').classList.remove('active');
+      }, 200);
     }
   };
 }
