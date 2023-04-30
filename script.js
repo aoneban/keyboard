@@ -975,7 +975,8 @@ const initKeystroke = () => {
       event.code !== 'ControlLeft' &&
       event.code !== 'ControlRight' &&
       event.code !== 'AltLeft' &&
-      event.code !== 'AltRight'
+      event.code !== 'AltRight' &&
+      event.code !== 'MetaLeft'
     ) {
       const setCaps = document.querySelector('.CapsLock')
       const setClass = document.querySelector('.eng')
@@ -1019,6 +1020,11 @@ const initKeystroke = () => {
       document.querySelector('.Backspace').classList.add('active');
       setTimeout(() => {
         document.querySelector('.Backspace').classList.remove('active');
+      }, 200);
+    } else if (event.code === 'MetaLeft') {
+      document.querySelector('.MetaLeft').classList.add('active');
+      setTimeout(() => {
+        document.querySelector('.MetaLeft').classList.remove('active');
       }, 200);
     } else if (callLoop === 'ControlLeftAltLeft' || callLoop === 'AltLeftControlLeft') {
       let displays = document.querySelector('.eng')
@@ -1162,6 +1168,7 @@ const initMouseClickCapsLock = () => {
   capsLock.addEventListener('click', function () {
     const caseDown = document.querySelectorAll('.caseDown');
     const caps = document.querySelectorAll('.caps');
+    const caseUp = document.querySelectorAll('.caseUp')
     if (
       capsLock.classList.contains('CapsLock') &&
       !capsLock.classList.contains('active')
@@ -1178,6 +1185,9 @@ const initMouseClickCapsLock = () => {
       caps.forEach(function (el) {
         el.style.display = 'none';
       });
+      caseUp.forEach(function (el) {
+        el.style.display = 'none';
+      });
       caseDown.forEach(function (el) {
         el.style.display = 'block';
       });
@@ -1189,56 +1199,140 @@ initMouseClickCapsLock();
 const initMouseClick = () => {
   const keys = document.querySelectorAll('.key');
   keys.forEach(function (el) {
-    if (!el.classList.contains('CapsLock')) {
-      el.addEventListener('click', function () {
-        if (this.classList.contains('Space')) {
-          this.classList.add('active');
-          area.value += ' ';
-          setTimeout(() => {
-            this.classList.remove('active');
-            document.getElementById('input').focus();
-          }, 200);
-        } else if (this.classList.contains('Tab')) {
-          this.classList.add('active');
-          area.value += '    ';
-          setTimeout(() => {
-            this.classList.remove('active');
-            document.getElementById('input').focus();
-          }, 200);
-        } else if (this.classList.contains('Enter')) {
-          this.classList.add('active');
-          area.value += '\n';
-          setTimeout(() => {
-            this.classList.remove('active');
-            document.getElementById('input').focus();
-          }, 200);
-        } else if (this.classList.contains('AltRight') || this.classList.contains('AltLeft') || this.classList.contains('ControlRight') || this.classList.contains('ControlLeft')) {
-          this.classList.add('active');
-          area.value += '';
-          setTimeout(() => {
-            this.classList.remove('active');
-            document.getElementById('input').focus();
-          }, 200);
-        } else if (this.classList.contains('Backspace')) {
-          this.classList.add('active');
-          let values = document.getElementById('input').value;
-          let str = values.replaceAll('Backspace', '');
-          str = str.slice(0, str.length - 1);
-          area.value = str;
-          setTimeout(() => {
-            this.classList.remove('active');
-            document.getElementById('input').focus();
-          }, 200);
-        } else {
-          this.classList.add('active');
-          area.value += this.innerText;
-          setTimeout(() => {
-            this.classList.remove('active');
-            document.getElementById('input').focus();
-          }, 200);
-        }
-      });
+    if (!el.classList.contains('ShiftLeft')) {
+      if (!el.classList.contains('CapsLock')) {
+        el.addEventListener('click', function () {
+          if (this.classList.contains('Space')) {
+            this.classList.add('active');
+            area.value += ' ';
+            setTimeout(() => {
+              this.classList.remove('active');
+              document.getElementById('input').focus();
+            }, 200);
+          } else if (this.classList.contains('Tab')) {
+            this.classList.add('active');
+            area.value += '    ';
+            setTimeout(() => {
+              this.classList.remove('active');
+              document.getElementById('input').focus();
+            }, 200);
+          } else if (this.classList.contains('Enter')) {
+            this.classList.add('active');
+            area.value += '\n';
+            setTimeout(() => {
+              this.classList.remove('active');
+              document.getElementById('input').focus();
+            }, 200);
+          } else if (this.classList.contains('MetaLeft')) {
+            this.classList.add('active');
+            setTimeout(() => {
+              this.classList.remove('active');
+              document.getElementById('input').focus();
+            }, 200);
+          } else if (this.classList.contains('AltRight') || this.classList.contains('AltLeft') || this.classList.contains('ControlRight') || this.classList.contains('ControlLeft')) {
+            this.classList.add('active');
+            area.value += '';
+            setTimeout(() => {
+              this.classList.remove('active');
+              document.getElementById('input').focus();
+            }, 200);
+          } else if (this.classList.contains('Backspace')) {
+            this.classList.add('active');
+            let values = document.getElementById('input').value;
+            let str = values.replaceAll('Backspace', '');
+            str = str.slice(0, str.length - 1);
+            area.value = str;
+            setTimeout(() => {
+              this.classList.remove('active');
+              document.getElementById('input').focus();
+            }, 200);
+          } else if (this.classList.contains('ShiftRight')) {
+            area.value = '';
+          } else {
+            this.classList.add('active');
+            area.value += this.innerText;
+            setTimeout(() => {
+              this.classList.remove('active');
+              document.getElementById('input').focus();
+            }, 200);
+          }
+        });
+      }
     }
   });
 }
 initMouseClick();
+
+const mouseHandlingShiftLeft = () => {
+  document.querySelector('.ShiftLeft').addEventListener('mousedown', function () {
+    const caseDown = document.querySelectorAll('.caseDown');
+    const caseUp = document.querySelectorAll('.caseUp');
+    const caps = document.querySelectorAll('.caps');
+    const capsLock = document.querySelector('.CapsLock');
+    
+    if (!capsLock.classList.contains('active')) {
+      document.querySelector('.ShiftLeft').classList.add('active');
+      caseDown.forEach((el) => (el.style.display = 'none'));
+      caseUp.forEach((el) => (el.style.display = 'block'));
+    } else if (capsLock.classList.contains('active')) {
+      document.querySelector('.ShiftLeft').classList.add('active');
+      caseDown.forEach((el) => (el.style.display = 'block'));
+      caseUp.forEach((el) => (el.style.display = 'none'));
+      caps.forEach((el) => (el.style.display = 'none'));
+    }
+  })
+  
+  document.querySelector('.ShiftLeft').addEventListener('mouseup', function(e) {
+    const caseDown = document.querySelectorAll('.caseDown');
+    const caseUp = document.querySelectorAll('.caseUp');
+    const capsLock = document.querySelector('.CapsLock');
+    if (!capsLock.classList.contains('active')) {
+      document.querySelector('.ShiftLeft').classList.remove('active');
+      caseDown.forEach((el) => (el.style.display = 'block'));
+      caseUp.forEach((el) => (el.style.display = 'none'));
+    } else if (capsLock.classList.contains('active')) {
+      document.querySelector('.ShiftLeft').classList.remove('active');
+      caseDown.forEach((el) => (el.style.display = 'none'));
+      caseUp.forEach((el) => (el.style.display = 'block'));
+    }
+  })
+}
+
+mouseHandlingShiftLeft()
+
+const mouseHandlingShiftRight = () => {
+  document.querySelector('.ShiftRight').addEventListener('mousedown', function () {
+    const caseDown = document.querySelectorAll('.caseDown');
+    const caseUp = document.querySelectorAll('.caseUp');
+    const caps = document.querySelectorAll('.caps');
+    const capsLock = document.querySelector('.CapsLock');
+    
+    if (!capsLock.classList.contains('active')) {
+      document.querySelector('.ShiftRight').classList.add('active');
+      caseDown.forEach((el) => (el.style.display = 'none'));
+      caseUp.forEach((el) => (el.style.display = 'block'));
+    } else if (capsLock.classList.contains('active')) {
+      document.querySelector('.ShiftRight').classList.add('active');
+      caseDown.forEach((el) => (el.style.display = 'block'));
+      caseUp.forEach((el) => (el.style.display = 'none'));
+      caps.forEach((el) => (el.style.display = 'none'));
+    }
+  })
+  
+  document.querySelector('.ShiftRight').addEventListener('mouseup', function() {
+    const caseDown = document.querySelectorAll('.caseDown');
+    const caseUp = document.querySelectorAll('.caseUp');
+    const capsLock = document.querySelector('.CapsLock');
+    if (!capsLock.classList.contains('active')) {
+      document.querySelector('.ShiftRight').classList.remove('active');
+      caseDown.forEach((el) => (el.style.display = 'block'));
+      caseUp.forEach((el) => (el.style.display = 'none'));
+    } else if (capsLock.classList.contains('active')) {
+      document.querySelector('.ShiftRight').classList.remove('active');
+      caseDown.forEach((el) => (el.style.display = 'none'));
+      caseUp.forEach((el) => (el.style.display = 'block'));
+    }
+  })
+}
+
+mouseHandlingShiftRight()
