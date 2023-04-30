@@ -1,6 +1,6 @@
 const genereateKeyboard = () => {
 const keyboard = document.createElement('div');
-keyboard.classList.add('container')
+keyboard.classList.add('container');
 keyboard.innerHTML = `
 <div class="container">
 <h1 class="text-center">Virtual keyboard</h1>
@@ -958,21 +958,24 @@ const initKeystroke = () => {
       caps.forEach(function (el) {
         el.style.display = 'none';
       });
+      caseUp.forEach(function (el) {
+        el.style.display = 'none';
+      });
       caseDown.forEach(function (el) {
         el.style.display = 'block';
       });
     } else if (
       event.code !== 'CapsLock' &&
       event.code !== 'Backspace' &&
-      event.code !== 'AltLeft' &&
-      event.code !== 'ControlLeft' &&
-      event.code !== 'AltRight' &&
-      event.code !== 'ControlRight' &&
       event.code !== 'Space' &&
       event.code !== 'Tab' &&
       event.code !== 'Enter' &&
       event.code !== 'ShiftLeft' &&
-      event.code !== 'ShiftRight'
+      event.code !== 'ShiftRight' &&
+      event.code !== 'ControlLeft' &&
+      event.code !== 'ControlRight' &&
+      event.code !== 'AltLeft' &&
+      event.code !== 'AltRight'
     ) {
       const setCaps = document.querySelector('.CapsLock')
       const setClass = document.querySelector('.eng')
@@ -1079,9 +1082,32 @@ const initKeystroke = () => {
       setTimeout(() => {
         document.querySelector('.Enter').classList.remove('active');
       }, 200);
-    } else if (event.code === 'ShiftLeft') {
+    } else if (event.code === 'ControlLeft') {
+      document.querySelector('.ControlLeft').classList.add('active');
+      area.value += '';
+      setTimeout(() => {
+        document.querySelector('.ControlLeft').classList.remove('active');
+      }, 200);
+    } else if (event.code === 'AltLeft') {
+      document.querySelector('.AltLeft').classList.add('active');
+      area.value += '';
+      setTimeout(() => {
+        document.querySelector('.AltLeft').classList.remove('active');
+      }, 200);
+    } else if (event.code === 'AltRight') {
+      document.querySelector('.AltRight').classList.add('active');
+      area.value += '';
+      setTimeout(() => {
+        document.querySelector('.AltRight').classList.remove('active');
+      }, 200);
+    } else if (event.code === 'ControlRight') {
+      document.querySelector('.ControlRight').classList.add('active');
+      area.value += '';
+      setTimeout(() => {
+        document.querySelector('.ControlRight').classList.remove('active');
+      }, 200);
+    } else if (event.code === 'ShiftLeft' && !capsLock.classList.contains('active')) {
       document.querySelector('.ShiftLeft').classList.add('active');
-      if (!capsLock.classList.contains('active') || computedStyle.display === 'block') {
         caseDown.forEach((el) => (el.style.display = 'none'));
         caseUp.forEach((el) => (el.style.display = 'block'));
         document.onkeyup = function (ev) {
@@ -1090,11 +1116,21 @@ const initKeystroke = () => {
             caseDown.forEach((el) => (el.style.display = 'block'));
             caseUp.forEach((el) => (el.style.display = 'none'));
           }
-        }
-      } 
-    } else if (event.code === 'ShiftRight') {
+      }
+    } else if (event.code === 'ShiftLeft' && capsLock.classList.contains('active')) {
+      document.querySelector('.ShiftLeft').classList.add('active');
+        caseDown.forEach((el) => (el.style.display = 'block'));
+        caseUp.forEach((el) => (el.style.display = 'none'));
+        caps.forEach((el) => (el.style.display = 'none'));
+        document.onkeyup = function (ev) {
+          if(ev.code === 'ShiftLeft') {
+            document.querySelector('.ShiftLeft').classList.remove('active');
+            caseDown.forEach((el) => (el.style.display = 'none'));
+            caseUp.forEach((el) => (el.style.display = 'block'));
+          }
+      }
+    } else if (event.code === 'ShiftRight' && !capsLock.classList.contains('active')) {
       document.querySelector('.ShiftRight').classList.add('active');
-      if (!capsLock.classList.contains('active') || computedStyle.display === 'block') {
         caseDown.forEach((el) => (el.style.display = 'none'));
         caseUp.forEach((el) => (el.style.display = 'block'));
         document.onkeyup = function (ev) {
@@ -1103,8 +1139,19 @@ const initKeystroke = () => {
             caseDown.forEach((el) => (el.style.display = 'block'));
             caseUp.forEach((el) => (el.style.display = 'none'));
           }
-        }
-      } 
+      }
+    } else if (event.code === 'ShiftRight' && capsLock.classList.contains('active')) {
+      document.querySelector('.ShiftRight').classList.add('active');
+        caseDown.forEach((el) => (el.style.display = 'block'));
+        caseUp.forEach((el) => (el.style.display = 'none'));
+        caps.forEach((el) => (el.style.display = 'none'));
+        document.onkeyup = function (ev) {
+          if(ev.code === 'ShiftRight') {
+            document.querySelector('.ShiftRight').classList.remove('active');
+            caseDown.forEach((el) => (el.style.display = 'none'));
+            caseUp.forEach((el) => (el.style.display = 'block'));
+          }
+      }
     }
   };
 }
@@ -1172,6 +1219,16 @@ const initMouseClick = () => {
             this.classList.remove('active');
             document.getElementById('input').focus();
           }, 200);
+        } else if (this.classList.contains('Backspace')) {
+          this.classList.add('active');
+          let values = document.getElementById('input').value;
+          let str = values.replaceAll('Backspace', '');
+          str = str.slice(0, str.length - 1);
+          area.value = str;
+          setTimeout(() => {
+            this.classList.remove('active');
+            document.getElementById('input').focus();
+          }, 200);
         } else {
           this.classList.add('active');
           area.value += this.innerText;
@@ -1185,15 +1242,3 @@ const initMouseClick = () => {
   });
 }
 initMouseClick();
-
-
-const backSpaceForMouse = () => {
-  const back = document.querySelector('.Backspace');
-  back.addEventListener('click', () => {
-    let values = document.getElementById('input').value;
-    let str = values.replaceAll('Backspace', '');
-    str = str.slice(0, str.length - 1);
-    area.value = str;
-  });
-}
-backSpaceForMouse();
