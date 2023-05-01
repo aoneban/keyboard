@@ -998,7 +998,7 @@ const initKeystroke = () => {
         document.querySelector(`.${event.code}`).classList.remove('active');
         }, 200);
       } else if (!setCaps.classList.contains('active') && newComputedStyle.display == 'none') {
-        const prev2 = document.querySelector(`.${event.code} > .rus > .caseDown`)
+        const prev2 = document.querySelector(`.${event.code} > .rus > .caseDown`).innerText;
         const startPos = area.selectionStart;
         const endPos = area.selectionEnd;
         const text = area.value;
@@ -1015,7 +1015,7 @@ const initKeystroke = () => {
         }, 200);
       }
       else if (setCaps.classList.contains('active') && newComputedStyle.display == 'block') {
-        const prev3 = document.querySelector(`.${event.code} > .eng > .caseUp`).innerText
+        const prev3 = document.querySelector(`.${event.code} > .eng > .caseUp`).innerText;
         const startPos = area.selectionStart;
         const endPos = area.selectionEnd;
         const text = area.value;
@@ -1070,6 +1070,11 @@ const initKeystroke = () => {
       const cursorPosition = area.selectionStart;
       const values = area.value;
       if (values[cursorPosition - 1]) {
+        event.preventDefault();
+        area.value = values.substring(0, cursorPosition) + values.substring(cursorPosition + 1); 
+        area.selectionStart = cursorPosition; 
+        area.selectionEnd = cursorPosition;
+      } else {
         event.preventDefault();
         area.value = values.substring(0, cursorPosition) + values.substring(cursorPosition + 1); 
         area.selectionStart = cursorPosition; 
@@ -1279,7 +1284,7 @@ initMouseClickCapsLock();
 const initMouseClick = () => {
   const keys = document.querySelectorAll('.key');
   keys.forEach(function (el) {
-    if (!el.classList.contains('ShiftLeft')) {
+    if (!el.classList.contains('ShiftLeft') || !el.classList.contains('ShiftRight')) {
       if (!el.classList.contains('CapsLock')) {
         el.addEventListener('click', function () {
           if (this.classList.contains('Space')) {
@@ -1362,7 +1367,7 @@ const initMouseClick = () => {
               this.classList.remove('active');
               document.getElementById('input').focus();
             }, 200);
-          }else if (this.classList.contains('ShiftRight')) {
+          } else if (this.classList.contains('ShiftRight') || this.classList.contains('ShiftLeft'))  {
             area.value = '';
           } else {
             const item = this.innerText;
