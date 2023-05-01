@@ -984,30 +984,66 @@ const initKeystroke = () => {
       let newComputedStyle = getComputedStyle(setClass)
       if (!setCaps.classList.contains('active') && newComputedStyle.display == 'block') {
         const prev = document.querySelector(`.${event.code} > .eng > .caseDown`).innerText;
-        area.value += prev;
+        const startPos = area.selectionStart;
+        const endPos = area.selectionEnd;
+        const text = area.value;
+        const textBeforeCursor = text.substring(0, startPos);
+        const textAfterCursor = text.substring(endPos, text.length);
+        const newText = textBeforeCursor + prev + textAfterCursor;
+        area.value = newText;
+        const newCursorPos = startPos + 1;
+        area.selectionStart = newCursorPos;
+        area.selectionEnd = newCursorPos;
         document.querySelector(`.${event.code}`).classList.add('active');
         setTimeout(() => {
         document.querySelector(`.${event.code}`).classList.remove('active');
         }, 200);
       } else if (!setCaps.classList.contains('active') && newComputedStyle.display == 'none') {
         const prev2 = document.querySelector(`.${event.code} > .rus > .caseDown`)
-        area.value += prev2.innerText;
+        const startPos = area.selectionStart;
+        const endPos = area.selectionEnd;
+        const text = area.value;
+        const textBeforeCursor = text.substring(0, startPos);
+        const textAfterCursor = text.substring(endPos, text.length);
+        const newText = textBeforeCursor + prev2 + textAfterCursor;
+        area.value = newText;
+        const newCursorPos = startPos + 1;
+        area.selectionStart = newCursorPos;
+        area.selectionEnd = newCursorPos;
         document.querySelector(`.${event.code}`).classList.add('active');
         setTimeout(() => {
         document.querySelector(`.${event.code}`).classList.remove('active');
         }, 200);
       }
       else if (setCaps.classList.contains('active') && newComputedStyle.display == 'block') {
-        const prev3 = document.querySelector(`.${event.code} > .eng > .caseUp`)
-        area.value += prev3.innerText;
+        const prev3 = document.querySelector(`.${event.code} > .eng > .caseUp`).innerText
+        const startPos = area.selectionStart;
+        const endPos = area.selectionEnd;
+        const text = area.value;
+        const textBeforeCursor = text.substring(0, startPos);
+        const textAfterCursor = text.substring(endPos, text.length);
+        const newText = textBeforeCursor + prev3 + textAfterCursor;
+        area.value = newText;
+        const newCursorPos = startPos + 1;
+        area.selectionStart = newCursorPos;
+        area.selectionEnd = newCursorPos;
         document.querySelector(`.${event.code}`).classList.add('active');
         setTimeout(() => {
         document.querySelector(`.${event.code}`).classList.remove('active');
         }, 200);
       }
       else if (setCaps.classList.contains('active') && newComputedStyle.display == 'none') {
-        const prev4 = document.querySelector(`.${event.code} > .rus > .caseUp`)
-        area.value += prev4.innerText;
+        const prev4 = document.querySelector(`.${event.code} > .rus > .caseUp`).innerText;
+        const startPos = area.selectionStart;
+        const endPos = area.selectionEnd;
+        const text = area.value;
+        const textBeforeCursor = text.substring(0, startPos);
+        const textAfterCursor = text.substring(endPos, text.length);
+        const newText = textBeforeCursor + prev4 + textAfterCursor;
+        area.value = newText;
+        const newCursorPos = startPos + 1;
+        area.selectionStart = newCursorPos;
+        area.selectionEnd = newCursorPos;
         document.querySelector(`.${event.code}`).classList.add('active');
         setTimeout(() => {
         document.querySelector(`.${event.code}`).classList.remove('active');
@@ -1094,14 +1130,36 @@ const initKeystroke = () => {
         }, 200);
       } 
     } else if (event.code === 'Space') {
+      event.preventDefault()
+      const startPos = area.selectionStart;
+      const endPos = area.selectionEnd;
+      const text = area.value;
+      const textBeforeCursor = text.substring(0, startPos);
+      const textAfterCursor = text.substring(endPos, text.length);
+      const newText = textBeforeCursor + event.key + textAfterCursor;
+      area.value = newText;
+
+      const newCursorPos = startPos + 1;
+      area.selectionStart = newCursorPos;
+      area.selectionEnd = newCursorPos;
       document.querySelector('.Space').classList.add('active');
-      area.value += ' ';
       setTimeout(() => {
         document.querySelector('.Space').classList.remove('active');
       }, 200);
     } else if (event.code === 'Tab') {
       document.querySelector('.Tab').classList.add('active');
-      area.value += '    ';
+      const startPos = area.selectionStart;
+      const endPos = area.selectionEnd;
+      const text = area.value;
+      const textBeforeCursor = text.substring(0, startPos);
+      const textAfterCursor = text.substring(endPos, text.length);
+      const newText = textBeforeCursor + '    ' + textAfterCursor;
+      area.value = newText;
+
+      const newCursorPos = startPos + 4;
+      area.selectionStart = newCursorPos;
+      area.selectionEnd = newCursorPos;
+      document.querySelector('.Tab').classList.add('active');
       setTimeout(() => {
         document.querySelector('.Tab').classList.remove('active');
       }, 200);
@@ -1227,14 +1285,34 @@ const initMouseClick = () => {
         el.addEventListener('click', function () {
           if (this.classList.contains('Space')) {
             this.classList.add('active');
-            area.value += ' ';
+            const startPos = area.selectionStart;
+            const endPos = area.selectionEnd;
+            const text = area.value;
+            const textBeforeCursor = text.substring(0, startPos);
+            const textAfterCursor = text.substring(endPos, text.length);
+            const newText = textBeforeCursor + ' ' + textAfterCursor;
+            area.value = newText;
+
+            const newCursorPos = startPos + 1;
+            area.selectionStart = newCursorPos;
+            area.selectionEnd = newCursorPos;
             setTimeout(() => {
               this.classList.remove('active');
               document.getElementById('input').focus();
             }, 200);
           } else if (this.classList.contains('Tab')) {
             this.classList.add('active');
-            area.value += '    ';
+            const startPos = area.selectionStart;
+            const endPos = area.selectionEnd;
+            const text = area.value;
+            const textBeforeCursor = text.substring(0, startPos);
+            const textAfterCursor = text.substring(endPos, text.length);
+            const newText = textBeforeCursor + '    ' + textAfterCursor;
+            area.value = newText;
+
+            const newCursorPos = startPos + 4;
+            area.selectionStart = newCursorPos;
+            area.selectionEnd = newCursorPos;
             setTimeout(() => {
               this.classList.remove('active');
               document.getElementById('input').focus();
