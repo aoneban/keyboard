@@ -941,7 +941,6 @@ const initKeystroke = () => {
     const caseDown = document.querySelectorAll('.caseDown');
     const caseUp = document.querySelectorAll('.caseUp');
     const caps = document.querySelectorAll('.caps');
-    const shiftCaps = document.querySelectorAll('.shiftcaps')
     if (event.code === 'CapsLock' && !capsLock.classList.contains('active')) {
       capsLock.classList.add('active');
       caseDown.forEach(function (el) {
@@ -1080,7 +1079,7 @@ const initKeystroke = () => {
       setTimeout(() => {
         document.querySelector('.Delete').classList.remove('active');
       }, 200);
-    } else if (event.code === 'MetaLeft') {
+    } else if (event.code == 'MetaLeft') {
       document.querySelector('.MetaLeft').classList.add('active');
       setTimeout(() => {
         document.querySelector('.MetaLeft').classList.remove('active');

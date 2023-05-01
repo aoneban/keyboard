@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: Tahoma;
+}
+
 #input {
   width: 100%;
   font-size: 20px;
@@ -26,7 +30,7 @@
 .keyboard__wrapper {
   max-width: 55%;
   height: auto;
-  background-color: bisque;
+  background-color: #d5d5d8;
   margin: 0 auto;
   border-radius: 5px;
 }
@@ -41,19 +45,33 @@
   display: flex;
   order: 2;
   display: block;
-  background-color: aquamarine;
+  background-color: #fcfcfc;
   min-height: 40px;
   width: 50px;
   height: 50px;
   margin: 4px;
+  color: #333333;
   border-radius: 5px;
   transition: 0.3s ease;
   padding: 15px 0 0 20px;
   cursor: pointer;
+  box-shadow: 1px 1px 2px #333;
+}
+
+.keyboard__key:hover {
+  background-color: aqua;
 }
 
 .Backspace {
   width: 120px;
+}
+
+.Backspace > .eng,
+.Backspace > .rus,
+.CapsLock > .eng,
+.CapsLock > .rus {
+  position: relative;
+  right: 7px;
 }
 
 .hidden {
@@ -63,6 +81,10 @@
 .ShiftLeft,
 .CapsLock {
   width: 115px;
+}
+
+.ControlRight {
+  width: 54px;
 }
 
 .ShiftRight,
@@ -83,7 +105,7 @@
 .Delete > .rus,
 .Delete > .eng {
   position: relative;
-  right: 7px;
+  right: 10px;
 }
 
 .Enter > .rus,
@@ -93,7 +115,7 @@
 .ShiftLeft > .eng,
 .ShiftLeft > .rus {
   position: relative;
-  left: 20px;
+  left: 15px;
 }
 
 .MetaLeft > .rus,
@@ -111,7 +133,7 @@
 .AltRight > .rus,
 .AltRight > .eng {
   position: relative;
-  right: 5px;
+  right: 7px;
 }
 
 .ArrowUp > .rus,
@@ -124,6 +146,26 @@
 .ArrowDown > .eng {
   position: relative;
   right: 3px;
+}
+
+.Tab,
+.Backspace,
+.Delete,
+.MetaLeft,
+.AltLeft,
+.AltRight,
+.Enter,
+.CapsLock,
+.ControlLeft,
+.ControlRight,
+.ArrowUp,
+.ArrowLeft,
+.ArrowRight,
+.ArrowDown,
+.ShiftRight,
+.ShiftLeft {
+  background-color: #bcbfc3;
+  font-weight: bold;
 }
 
 .Space {
@@ -149,7 +191,7 @@
 }
 
 .active {
-  background-color: orange;
+  background-color: aqua;
   border-radius: 50%;
   border: none;
   transition: 0.3s ease;
