@@ -1034,16 +1034,15 @@ const initKeystroke = () => {
     } else if (event.code === 'Delete') {
       const cursorPosition = area.selectionStart;
       const values = area.value;
-      console.log(values)
       if (values[cursorPosition - 1]) {
         event.preventDefault();
         area.value = values.substring(0, cursorPosition) + values.substring(cursorPosition + 1); 
         area.selectionStart = cursorPosition; 
         area.selectionEnd = cursorPosition;
       }
-      document.querySelector('.Backspace').classList.add('active');
+      document.querySelector('.Delete').classList.add('active');
       setTimeout(() => {
-        document.querySelector('.Backspace').classList.remove('active');
+        document.querySelector('.Delete').classList.remove('active');
       }, 200);
     } else if (event.code === 'MetaLeft') {
       document.querySelector('.MetaLeft').classList.add('active');
@@ -1261,16 +1260,32 @@ const initMouseClick = () => {
               document.getElementById('input').focus();
             }, 200);
           } else if (this.classList.contains('Backspace')) {
+            const cursorPosition = area.selectionStart;
+            const values = area.value;
+            if (values[cursorPosition - 1]) {
+            area.value = values.substring(0, cursorPosition - 1) + values.substring(cursorPosition);
+            area.selectionStart = cursorPosition - 1;
+            area.selectionEnd = cursorPosition - 1;
+          }
             this.classList.add('active');
-            let values = document.getElementById('input').value;
-            let str = values.replaceAll('Backspace', '');
-            str = str.slice(0, str.length - 1);
-            area.value = str;
             setTimeout(() => {
               this.classList.remove('active');
               document.getElementById('input').focus();
             }, 200);
-          } else if (this.classList.contains('ShiftRight')) {
+          } else if (this.classList.contains('Delete')) {
+            const cursorPosition = area.selectionStart;
+            const values = area.value;
+            if (values[cursorPosition - 1]) {
+            area.value = values.substring(0, cursorPosition) + values.substring(cursorPosition + 1); 
+            area.selectionStart = cursorPosition; 
+            area.selectionEnd = cursorPosition;
+          }
+            this.classList.add('active');
+            setTimeout(() => {
+              this.classList.remove('active');
+              document.getElementById('input').focus();
+            }, 200);
+          }else if (this.classList.contains('ShiftRight')) {
             area.value = '';
           } else {
             this.classList.add('active');
