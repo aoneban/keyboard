@@ -976,13 +976,14 @@ const initKeystroke = () => {
       event.code !== 'ControlRight' &&
       event.code !== 'AltLeft' &&
       event.code !== 'AltRight' &&
-      event.code !== 'MetaLeft'
+      event.code !== 'MetaLeft' &&
+      event.code !== 'Delete'
     ) {
       const setCaps = document.querySelector('.CapsLock')
       const setClass = document.querySelector('.eng')
       let newComputedStyle = getComputedStyle(setClass)
       if (!setCaps.classList.contains('active') && newComputedStyle.display == 'block') {
-        const prev = document.querySelector(`.${event.code} > .eng > .caseDown`).innerText
+        const prev = document.querySelector(`.${event.code} > .eng > .caseDown`).innerText;
         area.value += prev;
         document.querySelector(`.${event.code}`).classList.add('active');
         setTimeout(() => {
@@ -1013,10 +1014,33 @@ const initKeystroke = () => {
         }, 200);
       }
     } else if (event.code === 'Backspace') {
-      let values = document.getElementById('input').value;
-      let str
-      str = values.slice(0, values.length - 1);
-      area.value = str;
+      const cursorPosition = area.selectionStart;
+      const values = area.value;
+      if (values[cursorPosition - 1]) {
+        event.preventDefault();
+        area.value = values.substring(0, cursorPosition - 1) + values.substring(cursorPosition);
+        area.selectionStart = cursorPosition - 1;
+        area.selectionEnd = cursorPosition - 1;
+      }
+      document.querySelector('.Backspace').classList.add('active');
+      setTimeout(() => {
+        document.querySelector('.Backspace').classList.remove('active');
+      }, 200);
+    } else if (event.code === 'MetaLeft') {
+      document.querySelector('.MetaLeft').classList.add('active');
+      setTimeout(() => {
+        document.querySelector('.MetaLeft').classList.remove('active');
+      }, 200);
+    } else if (event.code === 'Delete') {
+      const cursorPosition = area.selectionStart;
+      const values = area.value;
+      console.log(values)
+      if (values[cursorPosition - 1]) {
+        event.preventDefault();
+        area.value = values.substring(0, cursorPosition) + values.substring(cursorPosition + 1); 
+        area.selectionStart = cursorPosition; 
+        area.selectionEnd = cursorPosition;
+      }
       document.querySelector('.Backspace').classList.add('active');
       setTimeout(() => {
         document.querySelector('.Backspace').classList.remove('active');
@@ -1336,3 +1360,16 @@ const mouseHandlingShiftRight = () => {
 }
 
 mouseHandlingShiftRight()
+
+function getCursorPosition( ctrl ) {
+  var CaretPos = 0;
+  if ( document.selection ) {
+       ctrl.focus ();
+       var Sel = document.selection.createRange();
+       Sel.moveStart ('character', -ctrl.value.length);
+       CaretPos = Sel.text.length;
+   } else if ( ctrl.selectionStart || ctrl.selectionStart == '0' ) {
+       CaretPos = ctrl.selectionStart;
+   }
+   return CaretPos;
+}
