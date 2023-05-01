@@ -1366,8 +1366,23 @@ const initMouseClick = () => {
           }else if (this.classList.contains('ShiftRight')) {
             area.value = '';
           } else {
+            const item = this.innerText;
             this.classList.add('active');
-            area.value += this.innerText;
+            const startPos = area.selectionStart;
+            const endPos = area.selectionEnd;
+            const text = area.value;
+            const textBeforeCursor = text.substring(0, startPos);
+            const textAfterCursor = text.substring(endPos, text.length);
+            const newText = textBeforeCursor + item + textAfterCursor;
+            area.value = newText;
+
+            const newCursorPos = startPos + 1;
+            area.selectionStart = newCursorPos;
+            area.selectionEnd = newCursorPos;
+            setTimeout(() => {
+              this.classList.remove('active');
+              document.getElementById('input').focus();
+            }, 200);
             setTimeout(() => {
               this.classList.remove('active');
               document.getElementById('input').focus();
@@ -1453,16 +1468,3 @@ const mouseHandlingShiftRight = () => {
 }
 
 mouseHandlingShiftRight()
-
-function getCursorPosition( ctrl ) {
-  var CaretPos = 0;
-  if ( document.selection ) {
-       ctrl.focus ();
-       var Sel = document.selection.createRange();
-       Sel.moveStart ('character', -ctrl.value.length);
-       CaretPos = Sel.text.length;
-   } else if ( ctrl.selectionStart || ctrl.selectionStart == '0' ) {
-       CaretPos = ctrl.selectionStart;
-   }
-   return CaretPos;
-}
