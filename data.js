@@ -26,7 +26,7 @@ export const data = [
     {'keyCode': 'KeyP', 'caseDownEn': 'p', 'caseUpEn': 'P','capsEn': 'P', 'shiftcapsEn': 'p', 'caseDownRu': 'з', 'caseUpRu': 'З','capsRu': 'З', 'shiftcapsRu': 'з'},
     {'keyCode': 'BracketLeft', 'caseDownEn': '[', 'caseUpEn': '{','capsEn': '[', 'shiftcapsEn': '{', 'caseDownRu': 'х', 'caseUpRu': 'Х','capsRu': 'Х', 'shiftcapsRu': 'х'},
     {'keyCode': 'BracketRight', 'caseDownEn': ']', 'caseUpEn': '}','capsEn': ']', 'shiftcapsEn': '}', 'caseDownRu': 'ъ', 'caseUpRu': 'Ъ','capsRu': 'Ъ', 'shiftcapsRu': 'ъ'},
-    {'keyCode': 'Backslash', 'caseDownEn': '\\', 'caseUpEn': '|','capsEn': '\\', 'shiftcapsEn': '||', 'caseDownRu': '\\', 'caseUpRu': '//','capsRu': '\\', 'shiftcapsRu': '//'},
+    {'keyCode': 'Backslash', 'caseDownEn': '\\', 'caseUpEn': '|','capsEn': '\\', 'shiftcapsEn': '||', 'caseDownRu': '\\', 'caseUpRu': '/','capsRu': '\\', 'shiftcapsRu': '/'},
     {'keyCode': 'Delete', 'caseDownEn': 'Del', 'caseUpEn': 'Del','capsEn': 'Del', 'shiftcapsEn': 'Del', 'caseDownRu': 'Del', 'caseUpRu': 'Del','capsRu': 'Del', 'shiftcapsRu': 'Del'},
     {'keyCode': 'CapsLock', 'caseDownEn': 'CapsLock', 'caseUpEn': 'CapsLock','capsEn': 'CapsLock', 'shiftcapsEn': 'CapsLock', 'caseDownRu': 'CapsLock', 'caseUpRu': 'CapsLock','capsRu': 'CapsLock', 'shiftcapsRu': 'CapsLock'},
     {'keyCode': 'KeyA', 'caseDownEn': 'a', 'caseUpEn': 'A','capsEn': 'A', 'shiftcapsEn': 'a', 'caseDownRu': 'ф', 'caseUpRu': 'Ф','capsRu': 'Ф', 'shiftcapsRu': 'ф'},
