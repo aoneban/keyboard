@@ -1366,6 +1366,10 @@ const initMouseClick = () => {
             area.value = values.substring(0, cursorPosition) + values.substring(cursorPosition + 1); 
             area.selectionStart = cursorPosition; 
             area.selectionEnd = cursorPosition;
+          } else {
+            area.value = values.substring(0, cursorPosition) + values.substring(cursorPosition + 1); 
+            area.selectionStart = cursorPosition; 
+            area.selectionEnd = cursorPosition;
           }
             this.classList.add('active');
             setTimeout(() => {
