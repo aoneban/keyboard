@@ -1101,7 +1101,7 @@ const initKeystroke = () => {
         document.querySelector('.AltLeft').classList.add('active');
         document.querySelectorAll('.eng').forEach((el) => (el.style.display = 'none'));
         document.querySelectorAll('.rus').forEach((el) => (el.style.display = 'block'));
-        localStorage.setItem('test', 3);
+        localStorage.setItem('test', document.querySelectorAll('.rus'));
         setTimeout(() => {
           document.querySelector('.ControlLeft').classList.remove('active');
           document.querySelector('.AltLeft').classList.remove('active');
