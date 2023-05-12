@@ -26,7 +26,6 @@ const genereteKeyboard = (lang) => {
   const row = document.createElement('div');
   row.className = 'keyboard__row';
 
-  // eslint-disable-next-line array-callback-return
   data.map((el) => {
     if (lang === 'none') {
       const key = document.createElement('div');
@@ -66,47 +65,46 @@ const genereteKeyboard = (lang) => {
       shiftCapsRu.textContent = el.shiftcapsRu;
       rus.append(caseDownRu, caseUpRu, capsRu, shiftCapsRu);
       key.append(eng, rus);
-      row.append(key);
-    } else {
-      const key = document.createElement('div');
-      key.classList.add('keyboard__key', 'key', `${el.keyCode}`);
-
-      const eng = document.createElement('span');
-      eng.className = 'eng';
-      eng.style.display = 'none';
-      const caseDownEn = document.createElement('span');
-      caseDownEn.className = 'caseDown';
-      caseDownEn.textContent = el.caseDownEn;
-      const caseUpEn = document.createElement('span');
-      caseUpEn.className = 'caseUp';
-      caseUpEn.textContent = el.caseUpEn;
-      const capsEn = document.createElement('span');
-      capsEn.className = 'caps';
-      capsEn.textContent = el.capsEn;
-      const shiftCapsEn = document.createElement('span');
-      shiftCapsEn.className = 'shiftcaps';
-      shiftCapsEn.textContent = el.shiftcapsEn;
-      eng.append(caseDownEn, caseUpEn, capsEn, shiftCapsEn);
-
-      const rus = document.createElement('span');
-      rus.className = 'rus';
-      rus.style.display = 'block';
-      const caseDownRu = document.createElement('span');
-      caseDownRu.className = 'caseDown';
-      caseDownRu.textContent = el.caseDownRu;
-      const caseUpRu = document.createElement('span');
-      caseUpRu.className = 'caseUp';
-      caseUpRu.textContent = el.caseUpRu;
-      const capsRu = document.createElement('span');
-      capsRu.className = 'caps';
-      capsRu.textContent = el.capsRu;
-      const shiftCapsRu = document.createElement('span');
-      shiftCapsRu.className = 'shiftcaps';
-      shiftCapsRu.textContent = el.shiftcapsRu;
-      rus.append(caseDownRu, caseUpRu, capsRu, shiftCapsRu);
-      key.append(eng, rus);
-      row.append(key);
+      return row.append(key);
     }
+    const key = document.createElement('div');
+    key.classList.add('keyboard__key', 'key', `${el.keyCode}`);
+
+    const eng = document.createElement('span');
+    eng.className = 'eng';
+    eng.style.display = 'none';
+    const caseDownEn = document.createElement('span');
+    caseDownEn.className = 'caseDown';
+    caseDownEn.textContent = el.caseDownEn;
+    const caseUpEn = document.createElement('span');
+    caseUpEn.className = 'caseUp';
+    caseUpEn.textContent = el.caseUpEn;
+    const capsEn = document.createElement('span');
+    capsEn.className = 'caps';
+    capsEn.textContent = el.capsEn;
+    const shiftCapsEn = document.createElement('span');
+    shiftCapsEn.className = 'shiftcaps';
+    shiftCapsEn.textContent = el.shiftcapsEn;
+    eng.append(caseDownEn, caseUpEn, capsEn, shiftCapsEn);
+
+    const rus = document.createElement('span');
+    rus.className = 'rus';
+    rus.style.display = 'block';
+    const caseDownRu = document.createElement('span');
+    caseDownRu.className = 'caseDown';
+    caseDownRu.textContent = el.caseDownRu;
+    const caseUpRu = document.createElement('span');
+    caseUpRu.className = 'caseUp';
+    caseUpRu.textContent = el.caseUpRu;
+    const capsRu = document.createElement('span');
+    capsRu.className = 'caps';
+    capsRu.textContent = el.capsRu;
+    const shiftCapsRu = document.createElement('span');
+    shiftCapsRu.className = 'shiftcaps';
+    shiftCapsRu.textContent = el.shiftcapsRu;
+    rus.append(caseDownRu, caseUpRu, capsRu, shiftCapsRu);
+    key.append(eng, rus);
+    return row.append(key);
   });
 
   keyboardWrapper.append(textArea, row);

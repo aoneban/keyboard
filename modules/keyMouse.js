@@ -43,7 +43,15 @@ export const initMouseClick = () => {
             }, 200);
           } else if (this.classList.contains('Enter')) {
             this.classList.add('active');
-            area.value += '\n';
+            const startPos = area.selectionStart;
+            const endPos = area.selectionEnd;
+            const text = area.value;
+            const textBeforeCursor = text.substring(0, startPos);
+            const textAfterCursor = text.substring(endPos, text.length);
+            area.value = `${textBeforeCursor}\n${textAfterCursor}`;
+            const newCursorPosition = textBeforeCursor.length + 1;
+            area.selectionStart = newCursorPosition;
+            area.selectionEnd = newCursorPosition;
             setTimeout(() => {
               this.classList.remove('active');
               document.getElementById('input').focus();

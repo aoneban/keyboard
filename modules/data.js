@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/prefer-default-export
 const data = [
   {
     keyCode: 'Backquote', caseDownEn: '`', caseUpEn: '~', capsEn: '`', shiftcapsEn: '~', caseDownRu: 'ё', caseUpRu: 'Ё', capsRu: 'Ё', shiftcapsRu: 'ё',

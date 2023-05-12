@@ -214,13 +214,20 @@ const initKeystroke = () => {
       const textAfterCursor = text.substring(endPos, text.length);
       const newText = `${textBeforeCursor}    ${textAfterCursor}`;
       area.value = newText;
-
       const newCursorPos = startPos + 4;
       area.selectionStart = newCursorPos;
       area.selectionEnd = newCursorPos;
       addAndRemoveActive(`.${event.code}`);
     } else if (event.code === 'Enter') {
-      area.value += '\n';
+      const startPos = area.selectionStart;
+      const endPos = area.selectionEnd;
+      const text = area.value;
+      const textBeforeCursor = text.substring(0, startPos);
+      const textAfterCursor = text.substring(endPos, text.length);
+      area.value = `${textBeforeCursor}\n${textAfterCursor}`;
+      const newCursorPosition = textBeforeCursor.length + 1;
+      area.selectionStart = newCursorPosition;
+      area.selectionEnd = newCursorPosition;
       addAndRemoveActive(`.${event.code}`);
     } else if (event.code === 'ControlLeft') {
       area.value += '';
