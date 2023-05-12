@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable no-return-assign */
 /* eslint-disable no-param-reassign */
 // eslint-disable-next-line import/named, import/extensions
@@ -25,11 +26,9 @@ const initKeystroke = () => {
     if (event.code === 'CapsLock' && !capsLock.classList.contains('active')) {
       capsLock.classList.add('active');
       caseDown.forEach((el) => {
-        // eslint-disable-next-line no-param-reassign
         el.style.display = 'none';
       });
       caps.forEach((el) => {
-        // eslint-disable-next-line no-param-reassign
         el.style.display = 'block';
       });
     } else if (
@@ -144,7 +143,6 @@ const initKeystroke = () => {
         area.selectionEnd = cursorPosition;
       }
       addAndRemoveActive(`.${event.code}`);
-    // eslint-disable-next-line eqeqeq
     } else if (event.code == 'MetaLeft') {
       addAndRemoveActive(`.${event.code}`);
     } else if (callLoop === 'ControlLeftAltLeft' || callLoop === 'AltLeftControlLeft') {
@@ -153,9 +151,7 @@ const initKeystroke = () => {
       if (computedStyle.display === 'block') {
         document.querySelector('.ControlLeft').classList.add('active');
         document.querySelector('.AltLeft').classList.add('active');
-        // eslint-disable-next-line no-return-assign, no-param-reassign
         document.querySelectorAll('.eng').forEach((el) => (el.style.display = 'none'));
-        // eslint-disable-next-line no-return-assign, no-param-reassign
         document.querySelectorAll('.rus').forEach((el) => (el.style.display = 'block'));
         localStorage.setItem('lang', 'block');
         setTimeout(() => {
