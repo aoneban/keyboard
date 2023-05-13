@@ -3,6 +3,8 @@
 /* eslint-disable no-param-reassign */
 // eslint-disable-next-line import/named, import/extensions
 import addAndRemoveActive from './helper.js';
+// eslint-disable-next-line import/extensions
+import texter from './text.js';
 
 const pressedKeys = {};
 
@@ -116,14 +118,24 @@ const initKeystroke = () => {
         area.selectionEnd = newCursorPos;
         addAndRemoveActive(`.${event.code}`);
       }
-    } else if (event.code === 'Backspace') {
-      const cursorPosition = area.selectionStart;
-      const values = area.value;
-      if (values[cursorPosition - 1]) {
-        event.preventDefault();
-        area.value = values.substring(0, cursorPosition - 1) + values.substring(cursorPosition);
-        area.selectionStart = cursorPosition - 1;
-        area.selectionEnd = cursorPosition - 1;
+    } else if (event.code === 'Backspace') { // if the user removes the text from the end
+      const newText = texter();
+      if (newText == null) {
+        const cursorPosition = area.selectionStart;
+        const values = area.value;
+        if (values[cursorPosition - 1]) {
+          event.preventDefault();
+          area.value = values.substring(0, cursorPosition - 1) + values.substring(cursorPosition);
+          area.selectionStart = cursorPosition - 1;
+          area.selectionEnd = cursorPosition - 1;
+        }
+      } else { // if the user selects some text
+        const cursorPosition = area.selectionStart;
+        const cursorEnd = area.selectionEnd;
+        const values = area.value;
+        area.value = values.substring(0, cursorPosition) + values.substring(cursorEnd);
+        area.selectionStart = cursorPosition;
+        area.selectionEnd = cursorPosition;
       }
       addAndRemoveActive(`.${event.code}`);
     } else if (event.code === 'MetaLeft') {
