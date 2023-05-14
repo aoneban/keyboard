@@ -1,4 +1,4 @@
-const texter = () => {
+const getSelectText = () => {
   const area = document.getElementById('input');
   const start = area.selectionStart;
   const end = area.selectionEnd;
@@ -9,4 +9,4 @@ const texter = () => {
   return null;
 };
 
-export default texter;
+export default getSelectText;

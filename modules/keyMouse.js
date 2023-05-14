@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/extensions
+import getSelectText from './gettext.js';
+
 /* eslint-disable no-return-assign */
 /* eslint-disable no-param-reassign */
 export const initMouseClick = () => {
@@ -69,14 +72,24 @@ export const initMouseClick = () => {
               this.classList.remove('active');
               document.getElementById('input').focus();
             }, 200);
-          } else if (this.classList.contains('Backspace')) {
-            const cursorPosition = area.selectionStart;
-            const values = area.value;
-            if (values[cursorPosition - 1]) {
-              // eslint-disable-next-line max-len
-              area.value = values.substring(0, cursorPosition - 1) + values.substring(cursorPosition);
-              area.selectionStart = cursorPosition - 1;
-              area.selectionEnd = cursorPosition - 1;
+          } else if (this.classList.contains('Backspace')) { // if the user removes the text from the end
+            const newText = getSelectText();
+            if (newText == null) {
+              const cursorPosition = area.selectionStart;
+              const values = area.value;
+              if (values[cursorPosition - 1]) {
+                // eslint-disable-next-line max-len
+                area.value = values.substring(0, cursorPosition - 1) + values.substring(cursorPosition);
+                area.selectionStart = cursorPosition - 1;
+                area.selectionEnd = cursorPosition - 1;
+              }
+            } else { // if the user selects some text
+              const cursorPosition = area.selectionStart;
+              const cursorEnd = area.selectionEnd;
+              const values = area.value;
+              area.value = values.substring(0, cursorPosition) + values.substring(cursorEnd);
+              area.selectionStart = cursorPosition;
+              area.selectionEnd = cursorPosition;
             }
             this.classList.add('active');
             setTimeout(() => {

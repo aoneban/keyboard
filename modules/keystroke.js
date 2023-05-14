@@ -4,7 +4,7 @@
 // eslint-disable-next-line import/named, import/extensions
 import addAndRemoveActive from './helper.js';
 // eslint-disable-next-line import/extensions
-import texter from './text.js';
+import getSelectText from './gettext.js';
 
 const pressedKeys = {};
 
@@ -119,7 +119,7 @@ const initKeystroke = () => {
         addAndRemoveActive(`.${event.code}`);
       }
     } else if (event.code === 'Backspace') { // if the user removes the text from the end
-      const newText = texter();
+      const newText = getSelectText();
       if (newText == null) {
         const cursorPosition = area.selectionStart;
         const values = area.value;
