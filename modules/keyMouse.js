@@ -95,16 +95,26 @@ export const initMouseClick = () => {
               document.getElementById('input').focus();
             }, 200);
           } else if (this.classList.contains('Delete')) {
-            const cursorPosition = area.selectionStart;
-            const values = area.value;
-            if (values[cursorPosition - 1]) {
-              // eslint-disable-next-line max-len
-              area.value = values.substring(0, cursorPosition) + values.substring(cursorPosition + 1);
-              area.selectionStart = cursorPosition;
-              area.selectionEnd = cursorPosition;
-            } else {
-              // eslint-disable-next-line max-len
-              area.value = values.substring(0, cursorPosition) + values.substring(cursorPosition + 1);
+            const newText = getSelectText();
+            if (newText == null) {
+              const cursorPosition = area.selectionStart;
+              const values = area.value;
+              if (values[cursorPosition - 1]) {
+                // eslint-disable-next-line max-len
+                area.value = values.substring(0, cursorPosition) + values.substring(cursorPosition + 1);
+                area.selectionStart = cursorPosition;
+                area.selectionEnd = cursorPosition;
+              } else {
+                // eslint-disable-next-line max-len
+                area.value = values.substring(0, cursorPosition) + values.substring(cursorPosition + 1);
+                area.selectionStart = cursorPosition;
+                area.selectionEnd = cursorPosition;
+              }
+            } else { // if the user selects some text
+              const cursorPosition = area.selectionStart;
+              const cursorEnd = area.selectionEnd;
+              const values = area.value;
+              area.value = values.substring(0, cursorPosition) + values.substring(cursorEnd);
               area.selectionStart = cursorPosition;
               area.selectionEnd = cursorPosition;
             }
