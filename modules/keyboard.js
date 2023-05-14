@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/named, import/extensions
 import data from './data.js';
 
 const genereteKeyboard = (lang) => {

@@ -1,9 +1,7 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable no-return-assign */
 /* eslint-disable no-param-reassign */
-// eslint-disable-next-line import/named, import/extensions
 import addAndRemoveActive from './helper.js';
-// eslint-disable-next-line import/extensions
 import getSelectText from './gettext.js';
 
 const pressedKeys = {};
@@ -141,16 +139,26 @@ const initKeystroke = () => {
     } else if (event.code === 'MetaLeft') {
       addAndRemoveActive(`.${event.code}`);
     } else if (event.code === 'Delete') {
-      const cursorPosition = area.selectionStart;
-      const values = area.value;
-      if (values[cursorPosition - 1]) {
-        event.preventDefault();
-        area.value = values.substring(0, cursorPosition) + values.substring(cursorPosition + 1);
-        area.selectionStart = cursorPosition;
-        area.selectionEnd = cursorPosition;
-      } else {
-        event.preventDefault();
-        area.value = values.substring(0, cursorPosition) + values.substring(cursorPosition + 1);
+      const newText = getSelectText();
+      if (newText == null) {
+        const cursorPosition = area.selectionStart;
+        const values = area.value;
+        if (values[cursorPosition - 1]) {
+          event.preventDefault();
+          area.value = values.substring(0, cursorPosition) + values.substring(cursorPosition + 1);
+          area.selectionStart = cursorPosition;
+          area.selectionEnd = cursorPosition;
+        } else {
+          event.preventDefault();
+          area.value = values.substring(0, cursorPosition) + values.substring(cursorPosition + 1);
+          area.selectionStart = cursorPosition;
+          area.selectionEnd = cursorPosition;
+        }
+      } else { // if the user selects some text
+        const cursorPosition = area.selectionStart;
+        const cursorEnd = area.selectionEnd;
+        const values = area.value;
+        area.value = values.substring(0, cursorPosition) + values.substring(cursorEnd);
         area.selectionStart = cursorPosition;
         area.selectionEnd = cursorPosition;
       }

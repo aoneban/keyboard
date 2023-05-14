@@ -1,6 +1,4 @@
-// eslint-disable-next-line import/extensions
 import getSelectText from './gettext.js';
-
 /* eslint-disable no-return-assign */
 /* eslint-disable no-param-reassign */
 export const initMouseClick = () => {
