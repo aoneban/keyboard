@@ -1,6 +1,7 @@
-import getSelectText from './gettext.js';
 /* eslint-disable no-return-assign */
 /* eslint-disable no-param-reassign */
+import getSelectText from './gettext.js';
+
 export const initMouseClick = () => {
   const area = document.getElementById('input');
   const keys = document.querySelectorAll('.key');
