@@ -26,7 +26,7 @@ const generateKeyboard = (lang) => {
   row.className = 'keyboard__row';
 
   data.map((el) => {
-    if (lang === 'none') {
+    if (lang !== 'none') {
       const key = document.createElement('div');
       key.classList.add('keyboard__key', 'key', `${el.keyCode}`);
 
