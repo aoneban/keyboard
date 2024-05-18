@@ -1,12 +1,10 @@
-import genereteKeyboard from './modules/keyboard.js';
+import generateKeyboard from './modules/keyboard.js';
 import initKeystroke from './modules/keystroke.js';
-import {
-  initMouseClick, initMouseClickCapsLock, mouseHandlingShiftLeft, mouseHandlingShiftRight,
-} from './modules/keymouse.js';
+import { initMouseClick, initMouseClickCapsLock, mouseHandlingShiftLeft, mouseHandlingShiftRight } from './modules/keyMouse.js';
 
 const LANGUAGE = localStorage.getItem('lang');
 
-genereteKeyboard(LANGUAGE);
+generateKeyboard(LANGUAGE);
 initKeystroke();
 initMouseClick();
 initMouseClickCapsLock();

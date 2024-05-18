@@ -1,6 +1,6 @@
 import data from './data.js';
 
-const genereteKeyboard = (lang) => {
+const generateKeyboard = (lang) => {
   const container = document.createElement('div');
   container.classList.add('container');
 
@@ -111,4 +111,4 @@ const genereteKeyboard = (lang) => {
   document.body.append(container);
 };
 
-export default genereteKeyboard;
+export default generateKeyboard;
