@@ -10,3 +10,8 @@ initMouseClick();
 initMouseClickCapsLock();
 mouseHandlingShiftLeft();
 mouseHandlingShiftRight();
+
+document.addEventListener('DOMContentLoaded', function() {
+    var video = document.getElementById('background-video');
+    video.playbackRate = 0.5;
+});
