@@ -4,6 +4,11 @@ export const initMouseClick = () => {
   const area = document.getElementById('input');
   const keys = document.querySelectorAll('.key');
   keys.forEach((el) => {
+    el.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+    });
+  });
+  keys.forEach((el) => {
     if (!el.classList.contains('ShiftLeft') || !el.classList.contains('ShiftRight')) {
       if (!el.classList.contains('CapsLock')) {
         el.addEventListener('click', function () {
