@@ -99,6 +99,12 @@ video {
   box-shadow: 1px 1px 2px #333;
 }
 
+.developer {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+}
+
 .keyboard__key:hover {
   background-color: aqua;
 }
@@ -243,4 +249,4 @@ video {
 .description {
   text-align: center;
   margin-top: 20px;
-}/*# sourceMappingURL=style.css.map */
+}
