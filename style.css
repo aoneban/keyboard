@@ -265,3 +265,22 @@ video {
   font-weight: 400;
   font-style: normal;
 }
+
+.change-color {
+  position: fixed;
+  font-family: "Poetsen One", sans-serif;
+  right: 20px;
+  top: 15px;
+  cursor: pointer;
+  padding: 8px 10px;
+  border: none;
+  background-color: #7aa9e8;
+  border-radius: 5px;
+  color: rgb(33, 24, 8);
+  font-weight: bold;
+}
+
+.change-color:hover {
+  background-color: #304b6e;
+  color: rgb(202, 237, 242);
+}

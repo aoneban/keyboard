@@ -1,4 +1,26 @@
 import data from './data.js';
+import funcToChangeColor from './changecolor.js';
+
+const serviceKeys = [
+  'ControlRight', 
+  'ArrowRight',
+  'ArrowDown', 
+  'ArrowLeft',
+  'AltRight',
+  'AltLeft',
+  'MetaLeft',
+  'ControlLeft',
+  'ShiftRight',
+  'ArrowUp',
+  'ShiftRight',
+  'ShiftLeft',
+  'Enter',
+  'CapsLock',
+  'Delete',
+  'Tab',
+  'Backspace',
+  'Backquote',
+]
 
 const generateKeyboard = (lang) => {
   const container = document.createElement('div');
@@ -18,6 +40,12 @@ const generateKeyboard = (lang) => {
   textArea.setAttribute('cols', '30');
   textArea.setAttribute('rows', '10');
 
+  const changeColor = document.createElement('button');
+  changeColor.addEventListener('click', funcToChangeColor)
+  changeColor.className = 'change-color';
+  changeColor.value = 'Change color';
+  changeColor.textContent = 'Change color';
+
   const description = document.createElement('p');
   description.className = 'description';
   description.textContent = 'The keyboard was created in the Windows operating system. To switch the language combination: ctrl + alt';
@@ -33,7 +61,11 @@ const generateKeyboard = (lang) => {
     if (lang !== 'none') {
       const key = document.createElement('div');
       key.classList.add('keyboard__key', 'key', `${el.keyCode}`);
-
+        if (serviceKeys.includes(el.keyCode)) {
+          key.classList.add('service')
+        } else {
+          key.classList.add('ordinary')
+        }
       const eng = document.createElement('span');
       eng.className = 'eng';
       eng.style.display = 'block';
@@ -72,6 +104,11 @@ const generateKeyboard = (lang) => {
     }
     const key = document.createElement('div');
     key.classList.add('keyboard__key', 'key', `${el.keyCode}`);
+    if (serviceKeys.includes(el.keyCode)) {
+      key.classList.add('service')
+    } else {
+      key.classList.add('ordinary')
+    }
 
     const eng = document.createElement('span');
     eng.className = 'eng';
@@ -112,7 +149,7 @@ const generateKeyboard = (lang) => {
 
   keyboardWrapper.append(textArea, row);
   container.append(titleText, keyboardWrapper, description);
-  document.body.append(container, developer);
+  document.body.append(changeColor, container, developer);
 };
 
 export default generateKeyboard;
