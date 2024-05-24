@@ -29,6 +29,96 @@ export const initMouseClick = () => {
               this.classList.remove('active');
               document.getElementById('input').focus();
             }, 200);
+          } else if (this.classList.contains('ArrowRight')) {
+            this.classList.add('active');
+            const startPos = area.selectionStart;
+            const textLength = area.value.length;
+            if (startPos < textLength) {
+              const newCursorPos = startPos + 1;
+              area.selectionStart = newCursorPos;
+              area.selectionEnd = newCursorPos;
+            }
+          
+            setTimeout(() => {
+              this.classList.remove('active');
+              document.getElementById('input').focus();
+            }, 200);
+          } else if (this.classList.contains('ArrowLeft')) {
+            this.classList.add('active');
+            const startPos = area.selectionStart;
+            const textLength = area.value.length;
+            if (startPos < textLength + 1) {
+              const newCursorPos = startPos - 1;
+              area.selectionStart = newCursorPos;
+              area.selectionEnd = newCursorPos;
+            }
+          
+            setTimeout(() => {
+              this.classList.remove('active');
+              document.getElementById('input').focus();
+            }, 200);
+          } else if (this.classList.contains('ArrowUp')) {
+            this.classList.add('active');
+            const startPos = area.selectionStart;
+            const text = area.value;
+
+            const lines = text.split('\n');
+            let lineStart = 0;
+            let lineIndex = 0;
+            let charIndex = startPos;
+            
+            for (let i = 0; i < lines.length; i++) {
+              if (charIndex <= lines[i].length) {
+                lineIndex = i;
+                break;
+              }
+              charIndex -= lines[i].length + 1; 
+              lineStart += lines[i].length + 1;
+            }
+
+            if (lineIndex > 0) {
+              const prevLine = lines[lineIndex - 1];
+              const prevLineStart = lineStart - lines[lineIndex - 1].length - 1;
+              const newCursorPos = Math.min(prevLineStart + charIndex, prevLineStart + prevLine.length);
+              area.selectionStart = newCursorPos;
+              area.selectionEnd = newCursorPos;
+            }
+
+            setTimeout(() => {
+              this.classList.remove('active');
+              document.getElementById('input').focus();
+            }, 200);
+          } else if (this.classList.contains('ArrowDown')) {
+            this.classList.add('active');
+            const startPos = area.selectionStart;
+            const text = area.value;
+          
+            const lines = text.split('\n');
+            let lineStart = 0;
+            let lineIndex = 0;
+            let charIndex = startPos;
+            
+            for (let i = 0; i < lines.length; i++) {
+              if (charIndex <= lines[i].length) {
+                lineIndex = i;
+                break;
+              }
+              charIndex -= lines[i].length + 1;
+              lineStart += lines[i].length + 1;
+            }
+          
+            if (lineIndex < lines.length - 1) {
+              const nextLine = lines[lineIndex + 1];
+              const nextLineStart = lineStart + lines[lineIndex].length + 1;
+              const newCursorPos = Math.min(nextLineStart + charIndex, nextLineStart + nextLine.length);
+              area.selectionStart = newCursorPos;
+              area.selectionEnd = newCursorPos;
+            }
+          
+            setTimeout(() => {
+              this.classList.remove('active');
+              document.getElementById('input').focus();
+            }, 200);
           } else if (this.classList.contains('Tab')) {
             this.classList.add('active');
             const startPos = area.selectionStart;

@@ -20,7 +20,7 @@ const generateKeyboard = (lang) => {
 
   const description = document.createElement('p');
   description.className = 'description';
-  description.textContent = 'The keyboard was created in the Windows operating system. To switch the language combination: left ctrl + alt';
+  description.textContent = 'The keyboard was created in the Windows operating system. To switch the language combination: ctrl + alt';
 
   const developer = document.createElement('p');
   developer.className = 'developer';
