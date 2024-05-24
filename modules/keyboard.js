@@ -20,7 +20,11 @@ const generateKeyboard = (lang) => {
 
   const description = document.createElement('p');
   description.className = 'description';
-  description.textContent = 'The keyboard was created in the Windows operating system. To switch the language combination: left ctrl + alt';
+  description.textContent = 'The keyboard was created in the Windows operating system. To switch the language combination: ctrl + alt';
+
+  const developer = document.createElement('p');
+  developer.className = 'developer';
+  developer.textContent = 'Developed by Ashot Bahiran';
 
   const row = document.createElement('div');
   row.className = 'keyboard__row';
@@ -108,7 +112,7 @@ const generateKeyboard = (lang) => {
 
   keyboardWrapper.append(textArea, row);
   container.append(titleText, keyboardWrapper, description);
-  document.body.append(container);
+  document.body.append(container, developer);
 };
 
 export default generateKeyboard;

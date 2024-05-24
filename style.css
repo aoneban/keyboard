@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&family=Sedan+SC&family=Shadows+Into+Light&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -55,6 +58,9 @@ video {
   text-align: center;
   margin: 0px auto;
   padding: 30px 0;
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .container {
@@ -87,16 +93,27 @@ video {
   font-size: 18px;
   display: inline-block;
   order: 2;
-  background-color: #fcfcfc;
+  background-color: #d0eeef;
   min-height: 40px;
   width: 50px;
   height: 50px;
   margin: 4px;
-  color: #333333;
+  color: #560952;
   border-radius: 5px;
   transition: 0.3s ease;
   cursor: pointer;
-  box-shadow: 1px 1px 2px #333;
+  box-shadow: 2px 2px 4px #ff00ed;
+}
+
+.developer {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  font-family: "Shadows Into Light", cursive;
+  font-weight: 400;
+  font-style: normal;
+  background-color: black;
+  padding: 0 6px;
 }
 
 .keyboard__key:hover {
@@ -202,7 +219,7 @@ video {
 .ArrowDown,
 .ShiftRight,
 .ShiftLeft {
-  background-color: #bcbfc3;
+  background-color: #7aa9e8;
   font-weight: bold;
 }
 
@@ -234,13 +251,17 @@ video {
 }
 
 .active {
-  background-color: aqua;
-  border-radius: 50%;
+  background-color: rgb(83, 147, 147)!important;
+  border-radius: 20%;
   border: none;
-  transition: 0.3s ease;
+  color: white;
+  transition: 0.1s ease;
 }
 
 .description {
   text-align: center;
   margin-top: 20px;
-}/*# sourceMappingURL=style.css.map */
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
